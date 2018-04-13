@@ -127,6 +127,10 @@ class maverick_hardware::raspberry (
             command => "/bin/sed -i -e 's/^dtoverlay=pi3-disable-bt/#dtoverlay=pi3-disable-bt/' /boot/config.txt",
             onlyif  => "/bin/grep '^dtoverlay=pi3-disable-bt' /boot/config.txt",
         }
+        exec { 'rpi3-disable-dtoverlay':
+            command => "/bin/sed -i -e 's/^dtoverlay=w1-gpio/#dtoverlay=w1-gpio/' /boot/config.txt",
+            onlyif  => "/bin/grep '^dtoverlay=w1-gpio' /boot/config.txt",
+        }
     }
 
     if ($overclock) {
